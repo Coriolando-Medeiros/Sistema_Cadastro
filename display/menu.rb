@@ -19,11 +19,11 @@ def iniciar_menu(produtos = [])
         when 1
             cadastro_produto(produtos)
         when 2
-            mensagem "Lista de produtos"
+            listar_produtos(produtos)
         when 3
-            mensagem "Retirada"
+            retirar_estoque(produtos)
         when 0
-            mensagem_vermelho "Saindo..."
+            mensagem_vermelho("Saindo...", false, false, 1)
             exit
         else
             mensagem "Opção inválida! Tente novamente"
