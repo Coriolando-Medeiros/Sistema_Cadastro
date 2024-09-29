@@ -5,6 +5,7 @@ def cadastro_produto(produtos)
     limpar_tela
 
     mensagem_azul("Digite a descrição do produto (#{verde(nome)}): ", false, false)
+    mensagem_verde("Estoque atual (#{amarelo(produto[:quantidade])}): ", false, false)
     descricao = gets.chomp
     limpar_tela
 
@@ -17,10 +18,12 @@ def cadastro_produto(produtos)
     limpar_tela
 
     produtos << {
-        id: Time.now.to_i
+        id: Time.now.to_i,
         nome: nome,
         descricao: descricao,
         preco: preco,
         quantidade: quantidade
     }
+
+    mensagem("#{amarelo(nome)} cadastrado com sucesso!", true, true, 3)
 end
