@@ -36,6 +36,7 @@ def retirar_estoque(produtos)
     if quantidade_retirada > 0
         produto.quantidade = produto.quantidade - quantidade_retirada
 
+        ProdutosServico.atualizar(p)
         mensagem_verde("Retirada realizada com sucesso!", true, true, 3)
         listar_produtos(produtos)
     else
