@@ -1,11 +1,11 @@
-def cadastro_produto(produtos)
+def cadastro_produto(produto)
     mensagem("Iniciando cadastro de produtos...", true, true, 1.5)
     mensagem_azul("Digite o nome do produto", false, false)
     nome = gets.chomp
     limpar_tela
 
     mensagem_azul("Digite a descrição do produto (#{verde(nome)}): ", false, false)
-    mensagem_verde("Estoque atual (#{amarelo(produto[:quantidade])}): ", false, false)
+    #mensagem_verde("Estoque atual (#{amarelo(produtos[:quantidade])}): ", false, false)
     descricao = gets.chomp
     limpar_tela
 
@@ -18,12 +18,12 @@ def cadastro_produto(produtos)
     limpar_tela
 
     
-    p = produto.new ({
-        id: Time.now.to_i,
-        nome: nome,
-        descricao: descricao,
-        preco: preco,
-        quantidade: quantidade
+    p = Produto.new ({
+        "id" => Time.now.to_i,
+        "nome" => nome,
+        "descricao" => descricao,
+        "preco" => preco,
+        "quantidade" => quantidade
     })
 
     ProdutosServico.adicionar(p)
