@@ -33,12 +33,15 @@ def retirar_estoque(produtos)
     mensagem_azul("Digite a quantidade que deseja retirar do produto: #{amarelo(produto.nome)}", false, false)
     mensagem_verde("Estoque atual: #{amarelo(produto.quantidade)}", false, false)
     quantidade_retirada = gets.chomp.to_i
-    if quantidade_retirada > 0
-        produto.quantidade = produto.quantidade - quantidade_retirada
+    if quantidade_retirada > 0 && quantidade_retirada <= produto.quantidade
+        produto.quantidade -= quantidade_retirada
 
-        ProdutosServico.atualizar(p)
+        ProdutosServico.atualizar(produto)
         mensagem_verde("Retirada realizada com sucesso!", true, true, 3)
         listar_produtos(produtos)
+    elsif quantidade_retirada > produto.quantidade
+        mensagem_vermelho("Você não pode retirar mais do que o estoque disponível!", true, true, 1)
+        retirar_estoque(produtos)
     else
         mensagem_vermelho("Você não pode retirar (#{quantidade_retirada}) do estoque", true, true, 1)
         retirar_estoque(produtos)
