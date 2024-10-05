@@ -11,14 +11,24 @@ class ProdutosServico # unit of work
 
     def self.adicionar(produto)
         produto_hash = self.transformar_para_hash(produto)
-        
         JsonRepositorio.adicionar(@arquivo, produto_hash)
-        
     end
 
     def self.atualizar(produto)
+        if produto.nil?
+            puts "Produto não pode ser nil"
+            return
+        end
+
         dados = JsonRepositorio.ler(@arquivo)
         produto_hash = dados.find{|dado| dado["id"] == produto.id}
+
+        if produto_hash.nil?
+            puts "Produto com ID #{produto.id} não encontrado!"
+            return
+        end
+
+        
         produto_hash["nome"] = produto.nome
         produto_hash["descricao"] = produto.descricao
         produto_hash["preco"] = produto.preco
