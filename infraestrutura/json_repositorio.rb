@@ -3,7 +3,7 @@ require 'json'
 class JsonRepositorio
     def self.ler(arquivo)
         unless File.exist?(arquivo)
-            puts "O arquivo #{arquivo} não existe"
+            puts "O @arquivo #{arquivo} não existe"
             return nil
         end
     
@@ -12,7 +12,7 @@ class JsonRepositorio
             data = JSON.parse(json_data)
             return data
         rescue JSON::ParseError => e
-            puts "Erro ao analisar o arquivo JSON: #{e}"
+            puts "Erro ao analisar o @arquivo JSON: #{e}"
             return nil
         end
     end
